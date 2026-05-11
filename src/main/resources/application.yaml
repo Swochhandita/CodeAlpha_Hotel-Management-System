@@ -19,7 +19,10 @@ spring:
   #--------------Profile--------------------
   profiles:
     active: dev
-
+#-------------------Liquibase------------------
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/changelog-master.yaml
 #-------------------------LOGGING---------------
 logging:
   level:
