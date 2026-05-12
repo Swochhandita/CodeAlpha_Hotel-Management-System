@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset swochhandita.ghimire: reservations-v1
+--changeset swochhandita.ghimire:reservations-v1
 --preconditions onFail: HALT onError: CONTINUE
 
 CREATE TABLE reservations (

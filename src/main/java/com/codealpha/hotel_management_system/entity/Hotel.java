@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(name = "hotels")
 public class Hotel extends BaseEntity {
 
     @Column(nullable = false, length = 200)

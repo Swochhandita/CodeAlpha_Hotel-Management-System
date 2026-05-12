@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset swochhandita.ghimire: 05-create-payments
+--changeset swochhandita.ghimire:05-create-payments
 --preconditions onFail: HALT onError: CONTINUE
 CREATE TABLE payments (
     id INT AUTO_INCREMENT PRIMARY KEY,
