@@ -6,8 +6,8 @@ import java.math.BigDecimal;
 
 @Data
 public class RoomResponse {
-    private Long id;
-    private Long hotelId;
+    private Integer id;
+    private Integer hotelId;
     private String hotelName;          // avoids a second API call from the client
     private String roomNumber;
     private RoomType roomType;

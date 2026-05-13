@@ -3,7 +3,7 @@ package com.codealpha.hotel_management_system.dto.response;
 import lombok.Data;
 @Data
 public class HotelResponse {
-    private Long id;
+    private Integer id;
     private String name;
     private String address;
     private String city;

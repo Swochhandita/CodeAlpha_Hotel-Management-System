@@ -11,23 +11,22 @@ import java.time.LocalDateTime;
 
 @Data
 public class ReservationResponse {
-
-    private Long id;
-    private Long userId;
+    private Integer id;
+    private Integer userId;
     private String guestName;    // user.name
     private String guestEmail;   // user.email
     // Flat room + hotel info — same reasoning: avoid deep nesting using the static class
-    private Long roomId;
+    private Integer roomId;
     private String roomNumber;
     private String roomType;     // String not enum — cleaner JSON ("DELUXE" not {name: "DELUXE"})
-    private Long hotelId;
+    private Integer hotelId;
     private String hotelName;
     private String hotelCity;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     /*
      * numberOfNights: derived from checkOut - checkIn.
-     * Calculated in the mapper/service — not stored in DB.
+     * Calculated in the mapper — not stored in DB.
      * Saves the client from doing date math.
      */
     private Integer numberOfNights;

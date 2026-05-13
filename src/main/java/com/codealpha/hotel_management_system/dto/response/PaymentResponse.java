@@ -10,8 +10,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 @Data
 public class PaymentResponse {
-    private Long id;
-    private Long reservationId;
+    private Integer id;
+    private Integer reservationId;
     // Enough context so the client knows WHAT was paid for
     private String guestName;
     private String roomNumber;
