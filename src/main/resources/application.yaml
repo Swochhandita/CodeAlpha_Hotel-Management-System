@@ -33,3 +33,8 @@ logging:
     org.hibernate.SQL: DEBUG   # SQL log (redundant with show-sql but explicit)
   pattern:
     console: "%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+#--------------------------for JWT---------------------------------------
+hotel:
+  jwt:
+    secret: 5A7134743777217A25432A462D4A614E645267556B58703272357538782F413F
+    expiration-ms: 86400000
