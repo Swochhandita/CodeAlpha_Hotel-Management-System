@@ -4,12 +4,10 @@ import com.codealpha.hotel_management_system.dto.requests.HotelRequest;
 import com.codealpha.hotel_management_system.dto.response.HotelResponse;
 import com.codealpha.hotel_management_system.entity.Hotel;
 import com.codealpha.hotel_management_system.enums.RoomStatus;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
+import org.springframework.stereotype.Component;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public abstract class HotelMapper {
+@Component
+public class HotelMapper {
     public Hotel toEntity(HotelRequest request) {
         Hotel hotel = new Hotel();
         hotel.setName(request.getName());

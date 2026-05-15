@@ -5,13 +5,10 @@ import com.codealpha.hotel_management_system.dto.response.PaymentResponse;
 import com.codealpha.hotel_management_system.entity.Payment;
 import com.codealpha.hotel_management_system.entity.Reservation;
 import com.codealpha.hotel_management_system.enums.PaymentStatus;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
-
+import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
+@Component
 public class PaymentMapper {
     public Payment toEntity(PaymentRequest request, Reservation reservation, String transactionRef) {
         Payment payment = new Payment();

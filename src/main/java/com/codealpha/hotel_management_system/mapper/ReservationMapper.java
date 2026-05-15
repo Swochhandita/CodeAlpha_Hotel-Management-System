@@ -7,13 +7,11 @@ import com.codealpha.hotel_management_system.entity.Reservation;
 import com.codealpha.hotel_management_system.entity.Room;
 import com.codealpha.hotel_management_system.entity.User;
 import com.codealpha.hotel_management_system.enums.ReservationStatus;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
+import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.time.temporal.ChronoUnit;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
+@Component
 public class ReservationMapper {
     public Reservation toEntity(ReservationRequest request, User user, Room room) {
         Reservation reservation = new Reservation();

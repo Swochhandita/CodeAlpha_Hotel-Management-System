@@ -2,14 +2,13 @@ package com.codealpha.hotel_management_system.mapper;
 
 import com.codealpha.hotel_management_system.dto.requests.RegisterRequest;
 import com.codealpha.hotel_management_system.dto.response.AuthResponse;
+import com.codealpha.hotel_management_system.dto.response.UserResponse;
 import com.codealpha.hotel_management_system.entity.User;
 import com.codealpha.hotel_management_system.enums.Role;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
+import org.springframework.stereotype.Component;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public abstract class UserMapper {
+@Component
+public class UserMapper {
     public User toEntity(RegisterRequest request, String encodedPassword) {
         User user = new User();
         user.setName(request.getName());
@@ -28,6 +27,17 @@ public abstract class UserMapper {
         // token passed in directly and not derived from entity as not saved in the database
         response.setToken(token);
         response.setTokenType("Bearer");
+        return response;
+    }
+
+    public UserResponse toUserResponse(User user) {
+        UserResponse response = new UserResponse();
+        response.setId(user.getId());
+        response.setName(user.getName());
+        response.setEmail(user.getEmail());
+        response.setPhone(user.getPhone());
+        response.setRole(user.getRole());
+        response.setCreatedAt(user.getCreatedAt());
         return response;
     }
 }
