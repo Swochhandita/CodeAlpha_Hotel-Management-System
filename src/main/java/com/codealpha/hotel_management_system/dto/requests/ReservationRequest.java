@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Data
 public class ReservationRequest {
     @NotNull(message = "Room ID is required")
-    private Long roomId;
+    private Integer roomId;
 
     @NotNull(message = "Check-in date is required")
     @FutureOrPresent(message = "Check-in date must be today or a future date")

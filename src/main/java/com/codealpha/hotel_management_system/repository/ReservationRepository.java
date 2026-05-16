@@ -2,6 +2,7 @@ package com.codealpha.hotel_management_system.repository;
 
 import com.codealpha.hotel_management_system.entity.Reservation;
 import com.codealpha.hotel_management_system.enums.ReservationStatus;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -42,4 +43,5 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
             """)
     boolean existsOverlappingReservation(@Param("roomId") Long roomId, @Param("checkIn") LocalDate checkIn, @Param("checkOut") LocalDate checkOut);
     long countByStatus(ReservationStatus status);
+    Page<Reservation> findByUserId(Integer id, Pageable pageable);
 }
