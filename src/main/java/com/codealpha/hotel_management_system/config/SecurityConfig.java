@@ -64,6 +64,7 @@ public class SecurityConfig {
                         // AUTH endpoints — completely public
                         // Anyone can register or login without a token
                         .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         // HOTEL read endpoints — public
                         // Anyone can browse hotels without logging in
                         .requestMatchers(HttpMethod.GET, "/api/v1/hotels/**").permitAll()

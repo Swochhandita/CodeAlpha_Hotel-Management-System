@@ -18,4 +18,5 @@ public interface ReservationService {
     ApiResponse<?> getMyReservations(String email, Pageable pageable);
     ApiResponse<?> updateReservationStatus(Integer id, ReservationStatusUpdateRequest request);
     ApiResponse<?> cancelReservation(Integer id, String email);
+    byte[] exportReservationPdf(Integer reservationId, String email);
 }

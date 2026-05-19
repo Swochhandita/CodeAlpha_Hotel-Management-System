@@ -18,6 +18,7 @@ import com.codealpha.hotel_management_system.mapper.ReservationMapper;
 import com.codealpha.hotel_management_system.repository.ReservationRepository;
 import com.codealpha.hotel_management_system.repository.RoomRepository;
 import com.codealpha.hotel_management_system.repository.UserRepository;
+import com.codealpha.hotel_management_system.service.PdfService;
 import com.codealpha.hotel_management_system.service.ReservationService;
 import com.codealpha.hotel_management_system.utils.ResponseUtil;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +38,7 @@ public class ReservationServiceImpl implements ReservationService {
     private final RoomRepository roomRepository;
     private final UserRepository userRepository;
     private final ReservationMapper reservationMapper;
+    private final PdfService pdfService;
 
     // Create a new reservation
     // This is the most complex method — it has multiple
@@ -58,7 +60,8 @@ public class ReservationServiceImpl implements ReservationService {
         // checkOut must be strictly after checkIn
         // Example: checkIn = April 5, checkOut = April 5 is invalid
         // checkIn = April 5, checkOut = April 4 is also invalid
-        if (!request.getCheckOutDate().isAfter(request.getCheckInDate())) {throw new ApiException("Check-out date must be after check-in date", HttpStatus.BAD_REQUEST);
+        if (!request.getCheckOutDate().isAfter(request.getCheckInDate())) {
+            throw new ApiException("Check-out date must be after check-in date", HttpStatus.BAD_REQUEST);
         }
         // Step 5: Check for overlapping reservations
         // This is the core availability check —
@@ -76,6 +79,7 @@ public class ReservationServiceImpl implements ReservationService {
         log.info("Reservation created successfully with id: {}", saved.getId());
         return ResponseUtil.getCreatedResponseWithData(reservationMapper.toResponse(saved), "Reservation created successfully");
     }
+
     // Both admin and guest can call this but with different rules:
     // Admin — can see any reservation
     // Guest — can only see their own reservation  We enforce this by checking ownership for non-admin users
@@ -103,6 +107,7 @@ public class ReservationServiceImpl implements ReservationService {
         PagedResponse<ReservationResponse> response = PagedResponse.fromPage(reservationPage, reservationMapper::toResponse);
         return ResponseUtil.getSuccessResponseWithData(response, "Reservations fetched successfully");
     }
+
     // Get reservations of the currently logged in guest
     // email from JWT token ensures guests only see their own
     @Override
@@ -114,6 +119,7 @@ public class ReservationServiceImpl implements ReservationService {
         PagedResponse<ReservationResponse> response = PagedResponse.fromPage(reservationPage, reservationMapper::toResponse);
         return ResponseUtil.getSuccessResponseWithData(response, "Your reservations fetched successfully");
     }
+
     // Handles status transitions like:
     // PENDING → CONFIRMED (after payment)
     // CONFIRMED → COMPLETED (after checkout)
@@ -138,6 +144,7 @@ public class ReservationServiceImpl implements ReservationService {
         log.info("Reservation status updated to: {} for id: {}", saved.getStatus(), id);
         return ResponseUtil.getSuccessResponseWithData(reservationMapper.toResponse(saved), "Reservation status updated to " + saved.getStatus());
     }
+
     // We verify ownership before allowing cancellation
     @Override
     @Transactional
@@ -164,5 +171,17 @@ public class ReservationServiceImpl implements ReservationService {
         reservationRepository.save(reservation);
         log.info("Reservation cancelled successfully with id: {}", id);
         return ResponseUtil.getSuccessResponse("Reservation cancelled successfully");
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public byte[] exportReservationPdf(Integer reservationId, String email) {
+        log.debug("Exporting PDF for reservation id: {}", reservationId);
+        Reservation reservation = reservationRepository.findById(reservationId).orElseThrow(() -> new ResourceNotFoundException("Reservation not found with id: " + reservationId));
+        if (!reservation.getUser().getEmail().equals(email)) {
+            throw new UnauthorizedException("You are not authorized to export this reservation");
+        }
+        ReservationResponse response = reservationMapper.toResponse(reservation);
+        return pdfService.generateReservationPdf(response);
     }
 }

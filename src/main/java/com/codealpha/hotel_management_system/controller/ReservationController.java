@@ -60,4 +60,12 @@ public class ReservationController extends BaseController {
     public ResponseEntity<ApiResponse<?>> cancelReservation(@PathVariable Integer id, @AuthenticationPrincipal CustomUserDetails userDetails) {
         return ok(reservationService.cancelReservation(id, userDetails.getUsername()));// userDetails here is used to know whether this user is allowed to cancel the reservation or not cause we can't let anyone cancel other's reservation so for the conformation and security concern we use it here.
     }
+
+    @GetMapping(ApiConstant.EXPORT + ApiConstant.SLASH + "{reservationId}")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<byte[]> exportReservationPdf(@PathVariable Integer reservationId, @AuthenticationPrincipal CustomUserDetails userDetails) {
+        byte[] pdfBytes = reservationService.exportReservationPdf(reservationId, userDetails.getUsername());
+        String fileName = "reservation_" + reservationId + ".pdf";
+        return file(pdfBytes, fileName);
+    }
 }
