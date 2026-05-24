@@ -1,4 +1,4 @@
-# 🏨 Hotel Reservation System
+# 🏨 Hotel Reservation System named as StayEase.
 A robust backend REST API for managing hotel reservations built with
 Java Spring Boot. This project was developed as part of the 
 CodeAlpha Java Programming Internship.
