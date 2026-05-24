@@ -73,7 +73,8 @@ reservations, and process refunds.
 | Lombok            | Boilerplate reduction            |
 | iText 7           | PDF generation                   |
 | Maven             | Build tool                       |
-
+| SpringDoc OpenAPI | Swagger UI documentation         |
+|   2.8.8           |                                  |
 ---------------------------------------------------------------------------------
 
 ## 📁 Project Structure
@@ -84,6 +85,8 @@ src/main/java/com/codealpha/hotel_management_system/
 │   │   ├── JwtAuthFilter.java
 │   │   └── CustomUserDetails.java
 │   └── SecurityConfig.java
+    |__ SwaggerConfig.java
+    |__ DataSeeder.java
 ├── constant/
 │   └── ApiConstant.java
 ├── controller/
@@ -218,7 +221,15 @@ mvn spring-boot:run
 
 Liquibase will automatically create all tables on first run.
 
-### 5. Test the API
+### 5. Default Admin Credentials
+
+A default admin is created automatically on first startup:
+- Email: `admin@stayease.com`
+- Password: `admin123`
+
+> Change these credentials after first login in production.
+
+### 6. Test the API
 
 Import the Postman collection or use any REST client.
 
@@ -248,7 +259,7 @@ POST /api/v1/auth/register
 | GET | `/api/v1/users/view/{id}` | ADMIN | Get user by ID |
 | GET | `/api/v1/users/me` | Authenticated | Get own profile |
 | DELETE | `/api/v1/users/delete/{id}` | ADMIN | Delete user |
-
+| PATCH | `/api/v1/users/promote/{id}` | ADMIN | Promote user to admin |
 ### Hotels
 | Method | Endpoint | Access | Description |
 |--------|----------|--------|-------------|
@@ -323,6 +334,17 @@ Authorization: Bearer <token>
 Server validates token on every request
 Token expires after 24 hours
 
+## 📚 API Documentation
+
+Swagger UI is available at: http://localhost:8080/swagger-ui/index.html
+
+**To test secured endpoints:**
+1. Login via `POST /api/v1/auth/login`
+2. Copy the token from the response
+3. Click **Authorize** button in Swagger UI
+4. Enter `Bearer <your_token>`
+5. Click **Authorize** — all requests will include the token
+
 
 ### Roles
 
@@ -331,6 +353,14 @@ Token expires after 24 hours
 | `GUEST` | Browse hotels, make reservations, payments, export PDF |
 | `ADMIN` | Full access — manage hotels, rooms, users, reservations |
 
+
+### Promoting a user to admin
+
+A default admin is created on startup. To add more admins:
+
+1. Login as existing admin
+2. Call `PATCH /api/v1/users/promote/{id}` with the guest's user ID
+3. The guest is now promoted to admin
 ---
 
 ## 📄 PDF Export
