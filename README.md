@@ -74,7 +74,7 @@ reservations, and process refunds.
 | iText 7           | PDF generation                   |
 | Maven             | Build tool                       |
 | SpringDoc OpenAPI | Swagger UI documentation         |
-|   2.8.8           |                                  |
+                                            
 ---------------------------------------------------------------------------------
 
 ## 📁 Project Structure
