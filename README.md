@@ -84,9 +84,9 @@ src/main/java/com/codealpha/hotel_management_system/
 │   │   ├── JwtUtils.java
 │   │   ├── JwtAuthFilter.java
 │   │   └── CustomUserDetails.java
-│   └── SecurityConfig.java
-    |__ SwaggerConfig.java
-    |__ DataSeeder.java
+│   ├── SecurityConfig.java
+│   ├── SwaggerConfig.java
+│   └── DataSeeder.java
 ├── constant/
 │   └── ApiConstant.java
 ├── controller/
@@ -165,19 +165,20 @@ src/main/java/com/codealpha/hotel_management_system/
 │       ├── ReservationServiceImpl.java
 │       └── PaymentServiceImpl.java
 └── util/
-└── ResponseUtil.java
+    └── ResponseUtil.java
+
 src/main/resources/
 ├── application.yml
 ├── application-dev.yml
 └── db/
-└── changelog/
-├── changelog-master.yaml
-└── changesets/
-├── 01_create_table_users.sql
-├── 02_create_table_hotels.sql
-├── 03_create_table_rooms.sql
-├── 04_create_table_reservations.sql
-└── 05_create_table_payments.sql
+    └── changelog/
+        ├── changelog-master.yaml
+        └── changesets/
+            ├── 01_create_table_users.sql
+            ├── 02_create_table_hotels.sql
+            ├── 03_create_table_rooms.sql
+            ├── 04_create_table_reservations.sql
+            └── 05_create_table_payments.sql
 
 --------------------------------------------------------------------------------------
 
