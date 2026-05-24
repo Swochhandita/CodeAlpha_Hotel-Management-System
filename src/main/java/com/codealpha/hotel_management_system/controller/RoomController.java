@@ -6,6 +6,7 @@ import com.codealpha.hotel_management_system.dto.requests.RoomRequest;
 import com.codealpha.hotel_management_system.dto.requests.RoomStatusUpdateRequest;
 import com.codealpha.hotel_management_system.dto.response.ApiResponse;
 import com.codealpha.hotel_management_system.service.RoomService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Rooms", description = "Room management endpoints")
 @RestController
 @RequestMapping(ApiConstant.API + ApiConstant.SLASH + ApiConstant.HOTELS + ApiConstant.SLASH + "{hotelId}" + ApiConstant.SLASH + ApiConstant.ROOMS)
 @RequiredArgsConstructor

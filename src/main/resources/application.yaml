@@ -38,3 +38,14 @@ hotel:
   jwt:
     secret: 5A7134743777217A25432A462D4A614E645267556B58703272357538782F413F
     expiration-ms: 86400000
+
+# -----------------Swagger / OpenAPI configuration---------------------------
+springdoc:
+  api-docs:
+    path: /v3/api-docs        # URL where OpenAPI JSON is available
+  swagger-ui:
+    path: /swagger-ui.html    # URL to access Swagger UI
+    operations-sorter: method # Sort endpoints by HTTP method GET POST PUT etc.
+    tags-sorter: alpha        # Sort controller tags alphabetically
+    try-it-out-enabled: true  # Enables "Try it out" button by default
+  show-actuator: false        # Hide Spring Actuator endpoints from Swagger

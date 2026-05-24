@@ -6,6 +6,7 @@ import com.codealpha.hotel_management_system.core.controller.BaseController;
 import com.codealpha.hotel_management_system.dto.requests.PaymentRequest;
 import com.codealpha.hotel_management_system.dto.response.ApiResponse;
 import com.codealpha.hotel_management_system.service.PaymentService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Payments", description = "Payment processing endpoints")
 @RestController
 @RequestMapping(ApiConstant.API + ApiConstant.SLASH + ApiConstant.PAYMENTS)
 @RequiredArgsConstructor

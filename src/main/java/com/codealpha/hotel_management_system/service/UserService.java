@@ -11,4 +11,5 @@ public interface UserService {
     // Used by: guest to view their own profile
     // email comes from JWT token — extracted in the controller
     ApiResponse<?> getMyProfile(String email);
+    ApiResponse<?> promoteToAdmin(Integer id);
 }

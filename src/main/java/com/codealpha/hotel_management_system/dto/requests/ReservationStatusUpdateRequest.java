@@ -10,6 +10,5 @@ import lombok.Setter;
 public class ReservationStatusUpdateRequest {
     @NotNull(message = "Status is required")
     private ReservationStatus status;
-
     private String reason;
 }

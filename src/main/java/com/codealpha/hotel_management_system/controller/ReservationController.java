@@ -7,6 +7,7 @@ import com.codealpha.hotel_management_system.dto.requests.ReservationRequest;
 import com.codealpha.hotel_management_system.dto.requests.ReservationStatusUpdateRequest;
 import com.codealpha.hotel_management_system.dto.response.ApiResponse;
 import com.codealpha.hotel_management_system.service.ReservationService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Reservations", description = "Reservation management endpoints")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(ApiConstant.API + ApiConstant.SLASH + ApiConstant.RESERVATIONS)
