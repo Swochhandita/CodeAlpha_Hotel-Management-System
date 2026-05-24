@@ -78,6 +78,7 @@ reservations, and process refunds.
 ---------------------------------------------------------------------------------
 
 ## 📁 Project Structure
+```
 src/main/java/com/codealpha/hotel_management_system/
 ├── config/
 │   ├── jwt/
@@ -179,7 +180,7 @@ src/main/resources/
             ├── 03_create_table_rooms.sql
             ├── 04_create_table_reservations.sql
             └── 05_create_table_payments.sql
-
+```
 --------------------------------------------------------------------------------------
 
 ## 🚀 Getting Started
